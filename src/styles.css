@@ -1,4 +1,32 @@
-.main-background {
+.main {
     background-color: #54403f;
-    height: 80vmin;
+    min-height: 70vh;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-sections {
+    color: white;
+}
+
+.navbar-logged {
+    color: white;
+}
+
+.footer-credits {
+    color: white;
+}
+
+.footer-icons {
+    color: white;
+}
+
+@media(min-width:768px) {
+    
+}
+
+@media(min-width:992px) {
+    
 }
