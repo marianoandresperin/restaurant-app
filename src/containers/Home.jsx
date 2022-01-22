@@ -1,16 +1,18 @@
 import Login from "../components/Login";
 import { useLogin } from "../contexts/LoginContext";
+import Search from "./Search";
 
 const Home = () => {
     const { auth } = useLogin();
 
     return (
         <>
-            <div className="container-fluid main d-flex justify-content-center align-items-center">
+            <div className="container-fluid main d-flex justify-content-center align-items-center m-0 p-0">
                     {auth === true ? <>
-                        <div className="">
+                        <div className="container">
                         {/* <Menu /> */}
                         MENU
+                        <Search />
                         </div>
                         </>
                         : <div className="container">

@@ -14,10 +14,10 @@ const Navbar = () => {
     ]
 
     return (
-        <nav className="nav bg-dark d-flex flex-row justify-content-around align-items-center">
+        <nav className="nav container bg-dark d-flex flex-row justify-content-around align-items-center ">
             <div className="navbar-brand">
                 
-                    <p>Spoontastic</p>
+                    <p>SpoonacularAPI</p>
                 
             </div>
             <ul className="d-flex flex-column list-unstyled flex-lg-row">
