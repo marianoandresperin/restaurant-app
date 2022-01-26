@@ -77,7 +77,7 @@ const Search = () => {
                 
                      <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
                          {result.map(n =>
-                            <Dish key={n.id} title={n.title} image={n.image} cuisine={n.cuisines} healthScore={n.healthScore} vegan={n.vegan} glutenFree={n.glutenFree} ingredients={n.nutrition.ingredients} add={addDish} remove={removeDish} id={n.id} />
+                             <Dish key={n.id} title={n.title} image={n.image} type={n.dishTypes} cuisines={n.cuisines} calories={n.nutrition.nutrients[0].amount} healthScore={n.healthScore} vegan={n.vegan} glutenFree={n.glutenFree} add={addDish} remove={removeDish} id={n.id} />
                         )} 
                     </div>
                 

@@ -23,8 +23,34 @@
     color: white;
 }
 
+.dish-container {
+    height: 30rem;
+}
+
 .dish-image {
     width: 100%;
+}
+
+.dish-ingredients {
+    text-align: justify;
+}
+
+.dish-buttons {
+    height: 4rem;
+    padding: 0.5rem;
+}
+
+.dish-title {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.dish-vegan {
+    color: green;
+}
+
+.dish-glutenfree {
+    color: orange
 }
 
 @media(min-width:768px) {
