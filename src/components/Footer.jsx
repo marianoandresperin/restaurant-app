@@ -4,9 +4,9 @@ import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 const Footer = () => {
     return (
         <>
-        <div className="container-fluid pt-4 nav bg-dark">
+        <div className="container-fluid pt-4 nav bg-dark footer">
             <footer className="container col-10 col-md-12 d-flex flex-wrap justify-content-between align-items-center p-md-3 border-top">
-                <div className="col-6 col-md-4 d-flex align-items-center">
+                <div className="col-6 col-md-4 d-flex ">
                     <p className="footer-credits">Designed and developed by Mariano Perin</p>
                 </div>
                 <ul className="nav col-6 col-md-4 justify-content-end list-unstyled d-flex">

@@ -1,6 +1,10 @@
 .main {
     background-color: #54403f;
-    min-height: 70vh;
+    min-height: 75vh;
+}
+
+.navbar {
+    min-height: 12.5vh;
 }
 
 .navbar-brand {
@@ -15,8 +19,13 @@
     color: white;
 }
 
+.footer {
+    min-height: 12.5vh;
+}
+
 .footer-credits {
     color: white;
+    margin-bottom: 0;
 }
 
 .footer-icons {
@@ -24,7 +33,7 @@
 }
 
 .dish-container {
-    height: 30rem;
+    min-height: 30rem;
 }
 
 .dish-image {
@@ -36,7 +45,7 @@
 }
 
 .dish-buttons {
-    height: 4rem;
+    height: 3.5rem;
     padding: 0.5rem;
 }
 
@@ -47,10 +56,12 @@
 
 .dish-vegan {
     color: green;
+    font-size: 1rem;
 }
 
 .dish-glutenfree {
-    color: orange
+    color: orange;
+    font-size: 1rem;
 }
 
 @media(min-width:768px) {

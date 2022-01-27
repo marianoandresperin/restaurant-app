@@ -14,7 +14,7 @@ const Navbar = () => {
     ]
 
     return (
-        <nav className="nav bg-dark d-flex flex-row justify-content-around align-items-center ">
+        <nav className="nav bg-dark d-flex flex-row justify-content-around align-items-center navbar">
             <div className="navbar-brand">
                 
                     <p>SpoonacularAPI</p>

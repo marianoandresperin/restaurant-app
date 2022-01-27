@@ -7,11 +7,10 @@ const Home = () => {
 
     return (
         <>
-            <div className="container-fluid main d-flex justify-content-center align-items-center m-0 p-0">
+            <div className="container-fluid main d-flex justify-content-center m-0 p-0">
                     {auth === true ? <>
                         <div className="container">
                         {/* <Menu /> */}
-                        MENU
                         <Search />
                         </div>
                         </>

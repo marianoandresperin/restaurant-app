@@ -18,7 +18,7 @@ const Dish = ({ title, image, healthScore, calories, vegan, glutenFree, remove, 
                     <li className='list-group-item'>Calories: {calories} kcal</li>
                     <li className='list-group-item'>HealthScore: {healthScore}</li>
                 </ul>
-                <div className="d-flex flex-row justify-content-evenly dish-buttons">
+                <div className="d-flex flex-row justify-content-evenly align-items-center dish-buttons">
                     {/* <NavLink to={`/hero/${id}`}> */}
                         <button className="btn btn-primary">Details</button>
                     {/* </NavLink> */}

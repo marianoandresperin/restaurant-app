@@ -49,7 +49,7 @@ const Search = () => {
     
     return (
         <>
-            <div className="container col-10 d-flex flex-column">
+            <div className="container col-10 d-flex flex-column ">
                 <Formik
                 onSubmit={values => {
                     findDish(values.input);
@@ -61,8 +61,8 @@ const Search = () => {
                 {({ errors, touched }) => (
                     <Form className='input-group my-3 d-flex flex-column'>
                         <div className='d-flex flex-row'>
-                            <Field name="input" type="text" id="input" validate={validateInput} className='form-control input-search' /> 
-                            <button type="submit" className='btn btn-secondary btn-search'>
+                            <Field name="input" type="text" id="input" validate={validateInput} className='form-control' /> 
+                            <button type="submit" className='btn btn-success'>
                                 <FontAwesomeIcon icon={faSearch} size='2x' className='search-icon' />
                             </button>
                         </div>
