@@ -4,7 +4,10 @@ import MenuProvider from './contexts/MenuContext';
 import Home from './containers/Home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Search from './containers/Search';
+import Detail from './containers/Detail';
+import About from './components/About';
 
 function App() {
   return (
@@ -13,9 +16,12 @@ function App() {
       <MenuProvider>
         <BrowserRouter>
           <Navbar />
-
-                <Home />
-
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path='/dishfinder' element={<Search />} />
+            <Route path="/dish/:dishId" element={<Detail />} />
+            <Route path='/about' element={<About />} />
+          </Routes>
           <Footer />
         </BrowserRouter>
       </MenuProvider>  

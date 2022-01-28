@@ -1,4 +1,7 @@
 import { useLogin } from "../contexts/LoginContext";
+import {
+    Link
+} from "react-router-dom";
 
 const Navbar = () => {
     const { auth, logOut } = useLogin();
@@ -7,27 +10,29 @@ const Navbar = () => {
         logOut();
     }
 
-    const sections = [
-        { section: 'Menu' },
-        { section: 'DishFinder' },
-        { section: 'About'}
-    ]
-
     return (
         <nav className="nav bg-dark d-flex flex-row justify-content-around align-items-center navbar">
-            <div className="navbar-brand">
-                
-                    <p>SpoonacularAPI</p>
-                
+            <div className="navbar-brand d-flex flex-row">
+                <Link to={'/'}>
+                    SpoonacularAPI
+                </Link>
             </div>
-            <ul className="d-flex flex-column list-unstyled flex-lg-row">
-                {sections.map((n) => (
-                    <li key={n.section} className="navbar-sections" >
-                        
-                            {n.section}
-                        
-                    </li>
-                ))}
+            <ul className="d-flex flex-column list-unstyled flex-lg-row align-items-center">
+                <li className="navbar-sections" >
+                    <Link to={'/'}>
+                        Menu
+                    </Link>
+                </li>
+                <li className="navbar-sections" >
+                    <Link to={'/dishfinder'}>
+                        DishFinder
+                    </Link>
+                </li>
+                <li className="navbar-sections" >
+                    <Link to={'/about'}>
+                        About
+                    </Link>
+                </li>
             </ul>
             {auth === true ? <>
                 <div className='d-flex flex-row'>

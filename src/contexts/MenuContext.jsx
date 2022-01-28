@@ -7,17 +7,16 @@ const MenuProvider = ({ children }) => {
 
     const handleAdd = ((dish) => {
         const isInMenu = menu.some((findDish) => findDish.id === dish.id);
-        const heroAlig = dish.biography.alignment;
-        const badGuys = menu.filter(heroes => heroes.biography.alignment === "bad");
-        const goodGuys = menu.filter(heroes => heroes.biography.alignment === "good");
+        const vegan = dish.vegan;
+        const veganDishes = menu.filter(dishes => dishes.vegan === true);
+        const notVeganDishes = menu.filter(dishes => dishes.vegan === false);
 
-        if (!isInMenu && heroAlig === "bad" && badGuys.length < 3 && menu.length < 6) {
+        if (!isInMenu && vegan === true && veganDishes.length < 2 && menu.length < 4) {
             setMenu([...menu, dish]);
-        } else if (!isInMenu && heroAlig === "good" && goodGuys.length < 3 && menu.length < 6) {
-            setMenu([...menu, dish]);
-        } else if (!isInMenu && heroAlig !== "good" && heroAlig !== "bad" && menu.length < 6) {
+        } else if (!isInMenu && vegan === false && notVeganDishes.length < 2 && menu.length < 4) {
             setMenu([...menu, dish]);
         }
+        // console.log(dish)
     });
 
     const handleRemove = ((dish) => {
@@ -26,6 +25,8 @@ const MenuProvider = ({ children }) => {
         menu.splice(getDishIndex, 1);
         setMenu([...menu]);
     });
+
+    console.log(menu)
 
     return (
         <MenuContext.Provider value={{ menu, setMenu, handleRemove, handleAdd }} >

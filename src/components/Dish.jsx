@@ -1,7 +1,21 @@
-import { faBreadSlice, faSeedling } from "@fortawesome/free-solid-svg-icons";
+import { faBreadSlice,  faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import { useMenu } from "../contexts/MenuContext";
+import { NavLink } from "react-router-dom";
 
-const Dish = ({ title, image, healthScore, calories, vegan, glutenFree, remove, id }) => {
+const Dish = ({ title, image, healthScore, calories, vegan, glutenFree, add, remove, id }) => {
+    const { menu } = useMenu();
+    const [added, setAdded] = useState(false);
+
+    useEffect(() => {
+        if (menu.some((dish) => dish.id === id)) {
+            setAdded(true);
+        } else {
+            setAdded(false);
+        }
+    }, [menu, id])
+
 
     return (
         <>
@@ -19,10 +33,13 @@ const Dish = ({ title, image, healthScore, calories, vegan, glutenFree, remove, 
                     <li className='list-group-item'>HealthScore: {healthScore}</li>
                 </ul>
                 <div className="d-flex flex-row justify-content-evenly align-items-center dish-buttons">
-                    {/* <NavLink to={`/hero/${id}`}> */}
-                        <button className="btn btn-primary">Details</button>
-                    {/* </NavLink> */}
-                    <button id={id} onClick={remove} className="btn btn-danger">Remove</button>
+                    <NavLink to={`/dish/${id}`}>
+                        <button className="btn btn-primary search-btn">Details</button>
+                    </NavLink>
+                    {added === true ?
+                        <button id={id} onClick={remove} className="btn btn-danger search-btn">Remove</button>
+                        : <button id={id} onClick={add} className="btn btn-success search-btn">Add</button>
+                    }
                 </div>
             </div>
         </>

@@ -32,6 +32,25 @@
     color: white;
 }
 
+.login-title {
+    color: white;
+    font-size: 3rem;
+}
+
+.search-title {
+    color: white;
+    font-size: 4.5rem;
+}
+
+.search-btn {
+    width: 6rem;
+}
+
+.menu-title {
+    font-size: 5rem;
+    color:white
+}
+
 .dish-container {
     min-height: 30rem;
 }

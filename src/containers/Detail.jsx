@@ -1,70 +1,52 @@
-import { useLogin } from "../../contexts/LoginContext";
-import { useTeam } from "../../contexts/TeamContext";
-import SuperheroDetail from '../../components/SuperheroDetail/SuperheroDetail';
-import { useEffect, useState } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from "axios";
+import Dish from "../components/Dish";
+import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import { useMenu } from "../contexts/MenuContext";
 
 const Detail = () => {
-    const { auth } = useLogin();
-    const { team, handleRemove, handleAdd } = useTeam();
+    const { menu, handleRemove, handleAdd } = useMenu();
+    const { dishId } = useParams();
     const [detail, setDetail] = useState(null);
-    const [added, setAdded] = useState(false);
-    const { heroId } = useParams();
-    const mainURL = 'https://superheroapi.com/api/';
-    const token = '10226513330317308';
+    const apiKey = '9afaee5c88ed440485c8cde577fed382'
+    // const [added, setAdded] = useState(false);
 
-    const removeSuperhero = ((hero) => {
-        let heroById = team.find(({ id }) => id === hero.target.id);
-        handleRemove(heroById);
-    })
+    const removeDish = ((dish) => {
+        let dishById = menu.find(({ id }) => id === parseInt(dish.target.id));
+        handleRemove(dishById);
+    });
 
-    const addSuperhero = (() => {
-        handleAdd(detail);
+    const addDish = ((dish) => {
+        let dishById = detail.find(({ id }) => id === parseInt(dish.target.id));
+        handleAdd(dishById);
     });
 
     useEffect(() => {
         axios({
-            baseURL: `https://cors-anywhere.herokuapp.com/${mainURL}${token}/`,
-            url: `${heroId}`
+            baseURL: 'https://api.spoonacular.com/recipes/',
+            url: `${dishId}/information?apiKey=${apiKey}&addRecipeInformation=true&includeNutrition=true`
         })
             .then(snapshot =>
+                // console.log(snapshot.data)
                 setDetail(snapshot.data)
+                // console.log(dishId)
             )
             .catch(err =>
-            console.log(err)
-        )
-        team.some((hero) => hero.id === heroId) ? setAdded(true) : setAdded(false);
-        // detail && detail.biography.alignment.good === true ? setAlignment('good') : setAlignment('bad')
-    }, [team, heroId])
+                // console.log(err)
+                console.log(dishId)
+            )
+    }, [dishId]);
+
+    console.log(detail)
 
     return (
-        <>
-        {heroId < 733 ? <>
-            <div className="container-fluid background">
-                <div className="container d-flex flex-column justify-content-center align-items-center">
-                    {auth === true ? <>
-                            {detail ? <SuperheroDetail
-                            name={detail.name}
-                            alias={detail.biography.aliases[0]}
-                            height={detail.appearance.height[1]}
-                            weight={detail.appearance.weight[1]}
-                            workplace={detail.work["base"]}
-                            eyecolor={detail.appearance["eye-color"]}
-                            haircolor={detail.appearance["hair-color"]}
-                            pictureurl={detail.image.url}
-                            add={addSuperhero}
-                            remove={removeSuperhero}
-                            id={detail.id}
-                            added={added}
-                            goodOrBad={detail.biography.alignment}
-                            /> :<div className="spinner-border detail-loading m-5" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>}
-                    </> : <Redirect to="/" />}
+        <div className="container-fluid main d-flex flex-column justify-content-center m-0 p-0">
+            {detail ? <>
+                <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
+                    <Dish key={detail.id} title={detail.title} image={detail.image} calories={detail.nutrition.nutrients[0].amount} healthScore={detail.healthScore} vegan={detail.vegan} glutenFree={detail.glutenFree} add={addDish} remove={removeDish} id={detail.id} />
                 </div>
-                </div></> : <Redirect to={"/error"} />}
-        </>
+            </> : "Loading"}
+        </div>
     )
 }
 

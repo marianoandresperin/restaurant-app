@@ -22,14 +22,14 @@ const Search = () => {
     };
 
     const addDish = ((dish) => {
-        let dishById = result.find(({id}) => id === dish.target.id);
+        let dishById = result.find(({ id }) => id === parseInt(dish.target.id));
         handleAdd(dishById);
     });
 
     const removeDish = ((dish) => {
-        let dishById = menu.find(({ id }) => id === dish.target.id);
+        let dishById = menu.find(({ id }) => id === parseInt(dish.target.id));
         handleRemove(dishById);
-    })
+    });
         
     const findDish = (inputValue) => {
         axios({
@@ -37,19 +37,17 @@ const Search = () => {
             url: `complexSearch?apiKey=${apiKey}&query=${inputValue}&addRecipeInformation=true&addRecipeNutrition=true&number=24`
         })
             .then(snapshot =>
-                // console.log(snapshot)
                 setResult(snapshot.data.results)
             )
             .catch(err =>
                 console.log(err)
             )
     };
-
-    console.log(result)
     
     return (
-        <>
-            <div className="container col-10 d-flex flex-column ">
+        <div className="container-fluid main d-flex flex-column m-0 p-0">
+            <div className="container col-12 d-flex flex-column ">
+                <h1 className="m-3 search-title">DishFinder</h1>
                 <Formik
                 onSubmit={values => {
                     findDish(values.input);
@@ -67,22 +65,20 @@ const Search = () => {
                             </button>
                         </div>
                         <div className='d-flex flex-row justify-content-center'>
-                            {errors.input && touched.input ? <div className='validation-search'>{errors.input}</div> : null}
+                            {errors.input && touched.input ? <div className=''>{errors.input}</div> : null}
                         </div>
                     </Form>
                 )}
                 </Formik>
             </div>
             {result && result.length > 0 ? <>
-                
-                     <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
-                         {result.map(n =>
-                             <Dish key={n.id} title={n.title} image={n.image} type={n.dishTypes} cuisines={n.cuisines} calories={n.nutrition.nutrients[0].amount} healthScore={n.healthScore} vegan={n.vegan} glutenFree={n.glutenFree} add={addDish} remove={removeDish} id={n.id} />
-                        )} 
-                    </div>
-                
-            </> : result === undefined ? <h5 className='validation-search'>No results</h5> : null}
-        </>
+                <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
+                    {result.map(n =>
+                        <Dish key={n.id} title={n.title} image={n.image} calories={n.nutrition.nutrients[0].amount} healthScore={n.healthScore} vegan={n.vegan} glutenFree={n.glutenFree} add={addDish} remove={removeDish} id={n.id} />
+                    )} 
+                </div>
+            </> : result === undefined ? <h5 className=''>No results</h5> : null}
+        </div>
     )
 }
 
