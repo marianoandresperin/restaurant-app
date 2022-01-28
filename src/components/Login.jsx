@@ -12,7 +12,7 @@ const Login = () => {
             error = 'Invalid email address';
         }
         return error;
-    }
+    };
 
     function validatePassword(value) {
         let error;
@@ -20,11 +20,11 @@ const Login = () => {
             error = 'Required';
         }
         return error;
-    }
+    };
     
     const handleSubmit = (value) => {
         formSubmit(value);
-    }
+    };
 
     return (
         <div className="container d-flex flex-column justify-content-center align-items-center">

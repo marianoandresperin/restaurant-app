@@ -9,6 +9,7 @@ import Dish from "../components/Dish";
 const Search = () => {
     const { menu, handleAdd, handleRemove } = useMenu();
     const [result, setResult] = useState(null);
+    const [loading, setLoading] = useState(false);
     const apiKey = '9afaee5c88ed440485c8cde577fed382'
 
     const validateInput = (value) => {
@@ -31,18 +32,20 @@ const Search = () => {
         handleRemove(dishById);
     });
         
-    const findDish = (inputValue) => {
-        axios({
+    const findDish = async(inputValue) => {
+        await axios({
             baseURL: 'https://api.spoonacular.com/recipes/',
             url: `complexSearch?apiKey=${apiKey}&query=${inputValue}&addRecipeInformation=true&addRecipeNutrition=true&number=24`
         })
-            .then(snapshot =>
-                setResult(snapshot.data.results)
-            )
-            .catch(err =>
-                console.log(err)
-            )
+        .then(snapshot =>
+            setResult(snapshot.data.results)
+        )
+        .catch(err =>
+            console.log(err)
+        )
     };
+
+    console.log(loading)
     
     return (
         <div className="container-fluid main d-flex flex-column m-0 p-0">
@@ -60,9 +63,16 @@ const Search = () => {
                     <Form className='input-group my-3 d-flex flex-column'>
                         <div className='d-flex flex-row'>
                             <Field name="input" type="text" id="input" validate={validateInput} className='form-control' /> 
-                            <button type="submit" className='btn btn-success'>
-                                <FontAwesomeIcon icon={faSearch} size='2x' className='search-icon' />
-                            </button>
+                            {loading === true
+                                ? <button class="btn btn-success" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Loading...</span>
+                                </button>
+                                : <button type="submit" className='btn btn-success'>
+                                    <FontAwesomeIcon icon={faSearch} size='2x' className='search-icon' />
+                                </button>
+                            }
+                                
                         </div>
                         <div className='d-flex flex-row justify-content-center'>
                             {errors.input && touched.input ? <div className=''>{errors.input}</div> : null}
@@ -74,7 +84,7 @@ const Search = () => {
             {result && result.length > 0 ? <>
                 <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
                     {result.map(n =>
-                        <Dish key={n.id} title={n.title} image={n.image} calories={n.nutrition.nutrients[0].amount} healthScore={n.healthScore} vegan={n.vegan} glutenFree={n.glutenFree} add={addDish} remove={removeDish} id={n.id} />
+                        <Dish key={n.id} title={n.title} image={n.image} prepTime={n.readyInMinutes} price={n.pricePerServing} healthScore={n.healthScore} vegan={n.vegan} glutenFree={n.glutenFree} add={addDish} remove={removeDish} id={n.id} />
                     )} 
                 </div>
             </> : result === undefined ? <h5 className=''>No results</h5> : null}

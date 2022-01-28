@@ -9,7 +9,6 @@ const Detail = () => {
     const { dishId } = useParams();
     const [detail, setDetail] = useState(null);
     const apiKey = '9afaee5c88ed440485c8cde577fed382'
-    // const [added, setAdded] = useState(false);
 
     const removeDish = ((dish) => {
         let dishById = menu.find(({ id }) => id === parseInt(dish.target.id));
@@ -17,7 +16,7 @@ const Detail = () => {
     });
 
     const addDish = ((dish) => {
-        let dishById = detail.find(({ id }) => id === parseInt(dish.target.id));
+        let dishById = [detail].find(({ id }) => id === parseInt(dish.target.id));
         handleAdd(dishById);
     });
 
@@ -27,13 +26,10 @@ const Detail = () => {
             url: `${dishId}/information?apiKey=${apiKey}&addRecipeInformation=true&includeNutrition=true`
         })
             .then(snapshot =>
-                // console.log(snapshot.data)
                 setDetail(snapshot.data)
-                // console.log(dishId)
             )
             .catch(err =>
-                // console.log(err)
-                console.log(dishId)
+                console.log(err)
             )
     }, [dishId]);
 
@@ -43,9 +39,14 @@ const Detail = () => {
         <div className="container-fluid main d-flex flex-column justify-content-center m-0 p-0">
             {detail ? <>
                 <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
-                    <Dish key={detail.id} title={detail.title} image={detail.image} calories={detail.nutrition.nutrients[0].amount} healthScore={detail.healthScore} vegan={detail.vegan} glutenFree={detail.glutenFree} add={addDish} remove={removeDish} id={detail.id} />
+                    <Dish key={detail.id} title={detail.title} image={detail.image} prepTime={detail.readyInMinutes} price={detail.pricePerServing} healthScore={detail.healthScore} vegan={detail.vegan} glutenFree={detail.glutenFree} add={addDish} remove={removeDish} id={detail.id} />
                 </div>
-            </> : "Loading"}
+            </> :
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border text-success detail-loader" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>}
         </div>
     )
 }

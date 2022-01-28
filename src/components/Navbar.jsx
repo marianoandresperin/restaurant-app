@@ -8,7 +8,7 @@ const Navbar = () => {
     
     const handleLogOut = () => {
         logOut();
-    }
+    };
 
     return (
         <nav className="nav bg-dark d-flex flex-row justify-content-around align-items-center navbar">
@@ -18,17 +18,17 @@ const Navbar = () => {
                 </Link>
             </div>
             <ul className="d-flex flex-column list-unstyled flex-lg-row align-items-center">
-                <li className="navbar-sections" >
+                <li className="navbar-sections">
                     <Link to={'/'}>
                         Menu
                     </Link>
                 </li>
-                <li className="navbar-sections" >
+                <li className="navbar-sections">
                     <Link to={'/dishfinder'}>
                         DishFinder
                     </Link>
                 </li>
-                <li className="navbar-sections" >
+                <li className="navbar-sections">
                     <Link to={'/about'}>
                         About
                     </Link>
