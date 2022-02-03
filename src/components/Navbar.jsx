@@ -19,7 +19,7 @@ const Navbar = () => {
             </div>
             <ul className="d-flex flex-column list-unstyled flex-lg-row align-items-center">
                 <li className="navbar-sections">
-                    <Link to={'/'}>
+                    <Link to={'/menu'}>
                         Menu
                     </Link>
                 </li>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useMenu } from "../contexts/MenuContext";
 import { NavLink } from "react-router-dom";
 
-const Dish = ({ title, image, healthScore, price, prepTime, vegan, glutenFree, add, remove, id }) => {
+const Dish = ({ title, image, healthScore, price, prepTime, vegan, glutenFree, add, remove, showDetailsBtn, id }) => {
     const { menu } = useMenu();
     const [added, setAdded] = useState(false);
 
@@ -14,8 +14,7 @@ const Dish = ({ title, image, healthScore, price, prepTime, vegan, glutenFree, a
         } else {
             setAdded(false);
         }
-    }, [menu, id])
-
+    }, [menu, id]);
 
     return (
         <>
@@ -35,13 +34,15 @@ const Dish = ({ title, image, healthScore, price, prepTime, vegan, glutenFree, a
                     <li className='list-group-item'>Ready in {prepTime} minutes</li>
                     <li className='list-group-item'>HealthScore: {healthScore}</li>
                 </ul>
-                <div className="d-flex flex-row justify-content-evenly align-items-center dish-buttons">
-                    <NavLink to={`/dish/${id}`}>
-                        <button className="btn btn-primary search-btn">Details</button>
-                    </NavLink>
+                <div className="d-flex flex-row justify-content-evenly align-items-center py-3">
+                    {showDetailsBtn === true ?
+                        <NavLink to={`/dish/${id}`}>
+                            <button className="btn btn-primary dish-buttons">Details</button>
+                        </NavLink>
+                        : null}
                     {added === true ?
-                        <button id={id} onClick={remove} className="btn btn-danger search-btn">Remove</button>
-                        : <button id={id} onClick={add} className="btn btn-success search-btn">Add</button>
+                        <button id={id} onClick={remove} className="btn btn-danger dish-buttons">Remove</button>
+                        : <button id={id} onClick={add} className="btn btn-success dish-buttons">Add</button>
                     }
                 </div>
             </div>

@@ -1,8 +1,10 @@
 import { Formik, Form, Field } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../contexts/LoginContext';
 
 const Login = () => {    
-    const { formSubmit } = useLogin();
+    const { auth, formSubmit, logging } = useLogin();
+    const navigate = useNavigate();
 
     function validateEmail(value) {
         let error;
@@ -26,31 +28,44 @@ const Login = () => {
         formSubmit(value);
     };
 
-    return (
-        <div className="container d-flex flex-column justify-content-center align-items-center">
-            <h5 className='login-title'>Log in</h5>
-            <Formik
-                initialValues={{
-                    email: '',
-                    password: ''
-                }}
-                onSubmit={handleSubmit}
-            >
-                {({ errors, touched }) => (
-                    <Form className='container col-md-10 col-lg-4 d-flex flex-column'>
-                        <div className='my-3'>
-                            <Field name="email" placeholder="Email" validate={validateEmail} className="form-control" />
-                            {errors.email && touched.email && <div className='validation-text'>{errors.email} </div>}
-                        </div>
-                        <div className='my-3'>
-                            <Field name="password" type="password" placeholder="Password" validate={validatePassword} className="form-control" />
-                            {errors.password && touched.password && <div className='validation-text'>{errors.password}</div>}
-                        </div>
-                        <button type="submit" className='btn btn-success my-3'>Sign in</button>
-                    </Form> 
-                )}
-            </Formik>
-        </div>
+    return ( <>
+        {auth === false ?
+            <div className="container-fluid main d-flex flex-column justify-content-center m-0 p-0">
+                <div className="container d-flex flex-column justify-content-center align-items-center">
+                    <h1 className='title'>Log in</h1>
+                    <Formik
+                        initialValues={{
+                            email: '',
+                            password: ''
+                        }}
+                        onSubmit={handleSubmit}
+                    >
+                        {({ errors, touched }) => (
+                            <Form className='container col-md-10 col-lg-4 d-flex flex-column'>
+                                <div className='my-3'>
+                                    <Field name="email" placeholder="Email" validate={validateEmail} className="form-control" />
+                                    {errors.email && touched.email && <div className='form-validation'>{errors.email} </div>}
+                                </div>
+                                <div className='my-3'>
+                                    <Field name="password" type="password" placeholder="Password" validate={validatePassword} className="form-control" />
+                                    {errors.password && touched.password && <div className='form-validation'>{errors.password}</div>}
+                                </div>
+                                {logging === true
+                                    ? 
+                                    <button className="btn btn-success login-btn my-3" type="button" disabled>
+                                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Loading...
+                                    </button>
+                                    :
+                                    <button type="submit" className='btn btn-success my-3 login-btn'>Sign in</button>
+                                }
+                                
+                            </Form> 
+                        )}
+                    </Formik>
+                </div>
+            </div>
+        : navigate('/') } </>
     )
 }
 

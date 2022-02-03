@@ -26,10 +26,21 @@ const MenuProvider = ({ children }) => {
         setMenu([...menu]);
     });
 
+    const getTotal = (key) => {
+        let total = menu.map(dish => dish[`${key}`]);
+        return Math.round(total.reduce((a, b) => a + b));
+    };
+
+    const getAvg = (key) => {
+        let initials = menu.map(dish => dish[`${key}`]);
+        let total = initials.reduce((a, b) => a + b);
+        return Math.round(total / menu.length);
+    };
+
     console.log(menu)
 
     return (
-        <MenuContext.Provider value={{ menu, setMenu, handleRemove, handleAdd }} >
+        <MenuContext.Provider value={{ menu, setMenu, handleRemove, handleAdd, getTotal, getAvg }} >
             {children}
         </MenuContext.Provider>
     )

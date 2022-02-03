@@ -1,11 +1,14 @@
 import axios from "axios";
 import Dish from "../components/Dish";
 import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useMenu } from "../contexts/MenuContext";
+import { useLogin } from "../contexts/LoginContext";
 
 const Detail = () => {
-    const { menu, handleRemove, handleAdd } = useMenu();
+    const { menu, handleRemove, handleAdd, getTotal, getAvg } = useMenu();
+    const { auth } = useLogin();
+    const navigate = useNavigate();
     const { dishId } = useParams();
     const [detail, setDetail] = useState(null);
     const apiKey = '9afaee5c88ed440485c8cde577fed382'
@@ -30,16 +33,38 @@ const Detail = () => {
             )
             .catch(err =>
                 console.log(err)
-            )
-    }, [dishId]);
-
-    console.log(detail)
+        )
+        if (auth === false) {
+            navigate('/login')
+         } 
+    }, [dishId, auth, navigate]);
 
     return (
         <div className="container-fluid main d-flex flex-column justify-content-center m-0 p-0">
-            {detail ? <>
+            {detail && auth === true ? <>
                 <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
-                    <Dish key={detail.id} title={detail.title} image={detail.image} prepTime={detail.readyInMinutes} price={detail.pricePerServing} healthScore={detail.healthScore} vegan={detail.vegan} glutenFree={detail.glutenFree} add={addDish} remove={removeDish} id={detail.id} />
+                    <Dish key={detail.id}
+                        title={detail.title}
+                        image={detail.image}
+                        prepTime={detail.readyInMinutes}
+                        price={detail.pricePerServing}
+                        healthScore={detail.healthScore}
+                        vegan={detail.vegan}
+                        glutenFree={detail.glutenFree}
+                        add={addDish}
+                        remove={removeDish}
+                        id={detail.id}
+                        showDetailsBtn={false}
+                    />
+                    <h1 className="m-3 detail-title">Menu totals</h1>
+                    <div className='card col-12 col-md-4 col-lg-2 my-md-1 p-2 d-flex flex-column align-items-center'>
+                    {menu.length > 0 ?
+                    <>
+                        <h5>{`Total price: $${getTotal('pricePerServing')}`}</h5>
+                        <h5>{`Average prep time: ${getAvg('readyInMinutes')} mins`}</h5>
+                        <h5>{`Average HealthScore: ${getAvg('healthScore')}`}</h5>
+                    </> : <h5>Your menu is empty.</h5>}
+                    </div>
                 </div>
             </> :
                 <div className="d-flex justify-content-center">
