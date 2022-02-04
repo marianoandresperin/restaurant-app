@@ -6,6 +6,7 @@ export const useLogin = () => useContext(LoginContext);
 
 const LoginProvider = ({ children }) => {
     const [auth, setAuth] = useState(true);
+    const [token, setToken] = useState(undefined);
     const [logging, setLogging] = useState(false);
 
     const formSubmit = async (values) => {
@@ -17,9 +18,8 @@ const LoginProvider = ({ children }) => {
                 data: values
             })
             .then(res => {
-                localStorage.setItem('email', values.email);
                 localStorage.setItem('token', res.data.token);
-                setAuth(true);
+                setToken(localStorage.getItem('token'));
             })
         }
         catch(err) {
@@ -32,15 +32,12 @@ const LoginProvider = ({ children }) => {
 
     const logOut = () => {
         localStorage.clear();
-        setAuth(false);
-        
+        setToken(undefined);
     }
     
     useEffect(() => {
-        localStorage.getItem('token') !== null ? setAuth(true) : setAuth(false)
-    }, [auth]);
-
-    console.log(auth)
+        token ? setAuth(true) : setAuth(false)
+    }, [auth, token]);
     
     return (
         <LoginContext.Provider value={{ auth, formSubmit, logOut, logging }} >

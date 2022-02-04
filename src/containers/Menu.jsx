@@ -16,7 +16,7 @@ const Menu = () => {
 
     useEffect(() => {
         if (auth === false) {
-            navigate('/login')
+            navigate('/login');
         }
     }, [auth, navigate]);
     
@@ -48,9 +48,9 @@ const Menu = () => {
                     </div>
                 </> : <>
                     <h3 className='title text-center'>Your menu is empty!</h3>
-                    <h5 className='menu-message text-center my-3'>Start adding dishes to your menu</h5>
+                    <p className='menu-message text-center my-3'>Start adding dishes to your menu</p>
                     <NavLink to={'/dishfinder'}>
-                        <button className="btn btn-primary mt-2">Get started</button>
+                        <button className="btn btn-primary mt-2 home-button">Get started</button>
                     </NavLink></>}
             </div>
         </div>

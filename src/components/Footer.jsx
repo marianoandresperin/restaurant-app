@@ -3,7 +3,6 @@ import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
     return (
-        <>
         <div className="container-fluid pt-4 nav bg-dark footer">
             <footer className="container col-10 col-md-12 d-flex flex-wrap justify-content-between align-items-center p-md-3 border-top">
                 <div className="col-6 col-md-4 d-flex ">
@@ -15,7 +14,6 @@ const Footer = () => {
                 </ul>
             </footer>
         </div >
-        </>
     )
 }
 

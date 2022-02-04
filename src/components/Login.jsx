@@ -33,6 +33,8 @@ const Login = () => {
             <div className="container-fluid main d-flex flex-column justify-content-center m-0 p-0">
                 <div className="container d-flex flex-column justify-content-center align-items-center">
                     <h1 className='title'>Log in</h1>
+                    <p className='login-hint mb-0'>Email: challenge@alkemy.org</p>
+                    <p className='login-hint'>Password: react</p>
                     <Formik
                         initialValues={{
                             email: '',

@@ -24,8 +24,7 @@ const About = () => {
                     <a href="https://www.linkedin.com/in/marianoperin/" target='_blank' rel='noreferrer'><li className="ms-3"><FontAwesomeIcon icon={faLinkedin} size='3x' className='footer-icons'/></li></a>
                     <a href="https://github.com/marianoandresperin" target='_blank' rel='noreferrer'><li className="ms-3"><FontAwesomeIcon icon={faGithubSquare} size='3x' className='footer-icons'/></li></a>
                 </ul>
-
-            </div >
+            </div>
         </div>
     )
 }

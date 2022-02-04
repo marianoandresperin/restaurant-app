@@ -1,4 +1,3 @@
-import './styles.css';
 import LoginProvider from './contexts/LoginContext';
 import MenuProvider from './contexts/MenuContext';
 import Home from './containers/Home';

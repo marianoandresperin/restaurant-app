@@ -16,7 +16,6 @@ const MenuProvider = ({ children }) => {
         } else if (!isInMenu && vegan === false && notVeganDishes.length < 2 && menu.length < 4) {
             setMenu([...menu, dish]);
         }
-        // console.log(dish)
     });
 
     const handleRemove = ((dish) => {
@@ -36,8 +35,6 @@ const MenuProvider = ({ children }) => {
         let total = initials.reduce((a, b) => a + b);
         return Math.round(total / menu.length);
     };
-
-    console.log(menu)
 
     return (
         <MenuContext.Provider value={{ menu, setMenu, handleRemove, handleAdd, getTotal, getAvg }} >

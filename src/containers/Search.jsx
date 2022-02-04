@@ -57,14 +57,12 @@ const Search = () => {
 
     useEffect(() => {
         if (auth === false) {
-            navigate('/login')
+            navigate('/login');
         }
     }, [auth, navigate]);
     
     return (
-        <>
-        {/* { auth === true ?  */}
-            <div className="container-fluid main d-flex flex-column m-0 p-0">
+        <div className="container-fluid main d-flex flex-column m-0 p-0">
             <div className="container d-flex flex-column">
                 <h1 className="m-3 title">Dishfinder</h1>
                 <Formik
@@ -116,7 +114,6 @@ const Search = () => {
                 </div>
             </> : result && result.length === 0 ? <h3 className='search-negative'>No results</h3> : null}
         </div> 
-        </>
     )
 }
 
