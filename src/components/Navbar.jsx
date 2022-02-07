@@ -25,7 +25,7 @@ const Navbar = () => {
                 </li>
                 <li className="navbar-sections">
                     <Link to={'/dishfinder'}>
-                        DishFinder
+                        Dishfinder
                     </Link>
                 </li>
                 <li className="navbar-sections">

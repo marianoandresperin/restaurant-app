@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const LoginContext = createContext();
 export const useLogin = () => useContext(LoginContext);
@@ -24,6 +25,9 @@ const LoginProvider = ({ children }) => {
         }
         catch(err) {
             console.log(err);
+            swal("Oops! Something went wrong", `${err}.`, "error", {
+                button: "Close",
+            });
         }
         finally {
             setLogging(false);

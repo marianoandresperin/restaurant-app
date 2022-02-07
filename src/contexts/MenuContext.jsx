@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import swal from "sweetalert";
 const MenuContext = createContext();
 export const useMenu = () => useContext(MenuContext);
 
@@ -15,6 +16,14 @@ const MenuProvider = ({ children }) => {
             setMenu([...menu, dish]);
         } else if (!isInMenu && vegan === false && notVeganDishes.length < 2 && menu.length < 4) {
             setMenu([...menu, dish]);
+        } else if (!isInMenu && vegan === true && veganDishes.length >= 2) {
+            swal("Not so fast!", "Remember you can add up to 2 vegan dishes.", "warning", {
+                button: "Got it!",
+            })
+        } else if (!isInMenu && vegan === false && notVeganDishes.length >= 2) {
+            swal("Not so fast!", "Remember you can add up to 2 regular dishes.", "warning", {
+                button: "Got it!",
+            })
         }
     });
 

@@ -9,6 +9,7 @@ import Detail from './containers/Detail';
 import About from './components/About';
 import Login from './components/Login';
 import Menu from './containers/Menu';
+import Error from './components/Error';
 
 function App() {
   return (
@@ -23,15 +24,7 @@ function App() {
             <Route path='/dish/:dishId' element={<Detail />} />
             <Route path='/about' element={<About />} />
             <Route path='/login' element={<Login />} />
-            <Route
-              path="*"
-              element={
-                // Error
-                <main style={{ padding: "1rem" }}>
-                  <p>There's nothing here!</p>
-                </main>
-              }
-            />
+            <Route path="*" element={<Error />} />
           </Routes>
           <Footer />
         </BrowserRouter>
