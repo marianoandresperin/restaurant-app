@@ -42,7 +42,7 @@ const Detail = () => {
     return (
         <div className="container-fluid main d-flex flex-column justify-content-center m-0 p-0">
             {detail && auth === true ? <>
-                <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
+                <div className='container d-flex flex-column flex-md-row justify-content-evenly p-3 result-container'>
                     <Dish key={detail.id}
                         title={detail.title}
                         image={detail.image}
@@ -56,18 +56,20 @@ const Detail = () => {
                         id={detail.id}
                         showDetailsBtn={false}
                     />
-                    <h1 className="m-3 detail-title">Menu totals</h1>
-                    <div className='card col-12 col-md-4 col-lg-2 my-md-1 p-2 d-flex flex-column align-items-center'>
-                    {menu.length > 0 ?
-                    <>
-                        <h5>{`Total price: $${getTotal('pricePerServing')}`}</h5>
-                        <h5>{`Average prep time: ${getAvg('readyInMinutes')} mins`}</h5>
-                        <h5>{`Average HealthScore: ${getAvg('healthScore')}`}</h5>
-                    </> : <h5>Your menu is empty.</h5>}
+                    <div className="d-flex flex-column col-md-5 col-lg-7 align-items-center">
+                        <h1 className="my-md-5 col-12 detail-title">Menu totals</h1>
+                        <div className='card col-12 col-lg-8 d-flex flex-column align-items-center totals-container'>
+                            {menu.length > 0 ?
+                            <>
+                                <h5 className='detail-stats'>{`Total price: $${getTotal('pricePerServing')}`}</h5>
+                                <h5 className='detail-stats'>{`Average prep time: ${getAvg('readyInMinutes')} mins`}</h5>
+                                <h5 className='detail-stats'>{`Average HealthScore: ${getAvg('healthScore')}`}</h5>
+                            </> : <h5>Your menu is empty.</h5>}
+                        </div>
                     </div>
                 </div>
             </> :
-                <div className="d-flex justify-content-center">
+                <div className="d-flex flex-column align-content-center align-items-center">
                     <div className="spinner-border text-success detail-loader" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </div>

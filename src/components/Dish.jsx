@@ -17,7 +17,7 @@ const Dish = ({ title, image, healthScore, price, prepTime, vegan, glutenFree, a
     }, [menu, id]);
 
     return (
-        <div className='card col-12 col-md-4 col-lg-2 my-3 my-md-1 p-2 dish-container' >
+        <div className='card my-3 my-md-3 p-2 dish-container' >
             <img className='dish-image' src={image} alt={`${title} thumbnail.`} />
             <div className="dish-title-container d-flex flex-column align-content-between">
                 <div className="card-body">
@@ -29,9 +29,9 @@ const Dish = ({ title, image, healthScore, price, prepTime, vegan, glutenFree, a
                 </div>
             </div>
             <ul className="list-group list-group-flush align-items-center">
-                <li className='list-group-item'>Price: ${price}</li>
-                <li className='list-group-item'>Ready in {prepTime} minutes</li>
-                <li className='list-group-item'>HealthScore: {healthScore}</li>
+                <li className='list-group-item dish-text'>Price: ${price}</li>
+                <li className='list-group-item dish-text'>Ready in {prepTime} minutes</li>
+                <li className='list-group-item dish-text'>HealthScore: {healthScore}</li>
             </ul>
             <div className="d-flex flex-row justify-content-evenly align-items-center py-3">
                 {showDetailsBtn === true ?

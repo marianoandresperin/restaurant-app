@@ -9,20 +9,103 @@
     text-align: center;
 }
 
-.navbar {
+.navbar-container {
     min-height: 12.5vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    overflow: hidden;
 }
 
-.navbar-brand {
+.navbar-logo {
+    color: white;
+    font-size: 1.5rem;
+    width: 25%;
+}
+
+.navbar-logo:visited {
     color: white;
 }
 
-.navbar-sections {
+.navbar-text {
     color: white;
+}
+
+.navbar-text:visited {
+    color: white;
+}
+
+.navbar-links {
+    text-decoration: none;
+    transition: 0.7s ease;
+}
+
+.navbar-links:visited {
+    text-decoration: none;
 }
 
 .navbar-logged {
     color: white;
+}
+
+.navbar-ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding-inline-start: 0;
+    position: absolute;
+    left: -100%;
+    top: 12.5vh;
+    flex-direction: column;
+    gap: 0;
+    background-color: #198754;
+    text-align: center;
+    width: 100%;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.navbar-li {
+    list-style: none;
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin: 4vh 0;
+}
+
+.navbar-hamburger {
+    display: block;
+    width: 10%;
+    cursor: pointer;
+}
+
+.navbar-hamburger.navbar-active .navbar-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-hamburger.navbar-active .navbar-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.navbar-hamburger.navbar-active .navbar-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.navbar-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+}
+
+.navbar-active {
+    left: 0;
+}
+
+.navbar-button {
+    width: 40vw;
+    height: 5vh;
 }
 
 .footer {
@@ -47,6 +130,12 @@
     color: white;
 }
 
+.form-validation {
+    font-size: 1.5rem;
+    color:white;
+    font-weight: 300;
+}
+
 .home-title {
     font-size: 2.5rem;
     text-align: center;
@@ -65,6 +154,7 @@
 
 .home-button {
     font-size: 1.5rem;
+    font-weight: 300;
 }
 
 .search-btn {
@@ -90,10 +180,6 @@
 .dish-image {
     width: 100%;
     max-height: 13rem;
-}
-
-.dish-ingredients {
-    text-align: justify;
 }
 
 .dish-buttons {
@@ -133,9 +219,9 @@
     text-align: center;
 }
 
-.form-validation {
-    font-size: 1.5rem;
-    color:white;
+.detail-stats {
+    font-size: 1.25rem;
+    font-weight: 300;
 }
 
 .about-paragraph {
@@ -152,12 +238,235 @@
 .error-message {
     font-size: 1.5rem;
     text-align: center;
+    font-weight: 300;
+}
+
+.error-btn {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 300;
 }
 
 @media(min-width:768px) {
+    .title {
+        font-size: 4rem;
+    }
+
+    .navbar-logo {
+        font-size: 2rem;
+    }
+
+    .navbar-li {
+        font-size: 1.75rem;
+    }
+
+    .navbar-button {
+        width: 30vw;
+        font-size: 1.75rem;
+        font-weight: 300;
+    }
     
+    .navbar-bar {
+        width: 50px;
+        height: 5px;
+        margin: 10px auto;
+        border-radius: 100px;
+    }
+
+    .navbar-hamburger.navbar-active .navbar-bar:nth-child(1) {
+        transform: translateY(15px) rotate(45deg);
+    }
+
+    .navbar-hamburger.navbar-active .navbar-bar:nth-child(3) {
+        transform: translateY(-15px) rotate(-45deg);
+    }
+
+    .footer-credits {
+        font-size: 1.25rem;
+    }
+
+    .footer-icons {
+        font-size: 4em;
+    }
+
+    .login-btn {
+        height: 3rem;
+        font-size: 1.5rem;
+        font-weight: 300;
+    }
+
+    .login-hint {
+        font-size: 1.5rem;
+    }
+
+    .form-validation {
+        font-size: 1.25rem;
+    }
+
+    .form-control {
+        height: 3rem;
+        font-size: 1.5rem;
+    }
+
+    .home-title {
+        font-size: 3.5rem;
+    }
+
+    .home-message {
+        font-size: 2rem;
+    }
+
+    .home-button {
+        font-size: 2rem;
+        font-weight: 300;
+        height: 4rem;
+        width: 15rem;
+    }
+
+    .menu-message {
+        font-size: 2rem;
+        font-weight: 300;
+    }
+
+    .search-negative {
+        font-size: 2rem;
+        text-align: center;
+        font-weight: 300;
+    }
+
+    .dish-container {
+        min-height: 40rem;
+        width: 47%;
+    }
+
+    .dish-buttons {
+        height: 4rem;
+        width: 8rem;
+        font-size: 1.5rem;
+    }
+
+    .dish-title {
+        font-size: 2rem;
+    }
+
+    .dish-title-container {
+        min-height: 20rem;
+    }
+
+    .dish-vegan {
+        font-size: 1.5rem;
+    }
+
+    .dish-glutenfree {
+        font-size: 1.5rem;
+    }
+
+    .dish-text {
+        font-size: 1.5rem;
+    }
+
+    .dish-stats {
+        font-size: 1.75rem;
+    }
+
+    .about-paragraph {
+        font-size: 2rem;
+    }
 }
 
 @media(min-width:992px) {
+    .navbar-logo {
+        width: 35%;
+    }
     
+    .navbar-ul {
+        position: relative;
+        left: 0;
+        top: 0;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 0;
+        background-color: transparent;
+        text-align: center;
+        width: 100%;
+        z-index: 0;
+        margin: 0;
+    }
+
+    .navbar-li {
+        margin: 0;
+    }
+    
+    .navbar-hamburger {
+        display: none;
+    }
+
+    .navbar-button {
+        width: 6vw;
+        height: 4vh;
+        font-size: 1.25rem;
+        font-weight: 300;
+    }
+
+    .navbar-button-container {
+        width: 15vw;
+        height: 4vh;
+        justify-content: center;
+    }
+
+    .home-title {
+        font-size: 2.5rem;
+    }
+
+    .home-message {
+        font-size: 1.35rem;
+    }
+
+    .dish-container {
+        width: 23%;
+    }
+
+    .dish-buttons {
+        height: 3rem;
+        width: 6rem;
+        font-size: 1.25rem;
+        font-weight: 300;
+    }
+
+    .dish-title {
+        font-size: 1.5rem;
+    }
+
+    .dish-title-container {
+        min-height: 12rem;
+    }
+
+    .dish-vegan {
+        font-size: 1rem;
+    }
+
+    .dish-glutenfree {
+        font-size: 1rem;
+    }
+
+    .dish-text {
+        font-size: 1.3rem;
+    }
+
+    .dish-stats {
+        font-size: 1.75rem;
+    }
+
+    .detail-title {
+        font-size: 3rem;
+    }
+
+    .detail-stats {
+        font-size: 2rem;
+    }
+
+    .about-paragraph {
+        font-size: 1.7rem;
+        font-weight: 300;
+    }
 }

@@ -95,7 +95,7 @@ const Search = () => {
                 </Formik>
             </div>
             {result && result.length > 0 ? <>
-                <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
+                <div className='container d-flex flex-row flex-wrap justify-content-evenly justify-content-md-between p-3 result-container'>
                     {result.map(n =>
                         <Dish key={n.id}
                             title={n.title}

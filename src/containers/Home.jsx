@@ -15,11 +15,11 @@ const Home = () => {
     return (
         <div className="container-fluid main d-flex flex-column justify-content-center m-0 p-0">
             <div className="container">
-                <div className='card col-12 col-md-4 col-lg-2 my-md-1 py-3 px-4 d-flex flex-column align-items-center'>
-                    <h3 className="home-title my-3">Welcome to the SpoonacularAPI!</h3>
-                    <p className="home-message my-3">This is a small project where you can create your own customized menu by adding some of your all-time favourite dishes.</p>
-                    <p className="home-message my-3">You can add up to 4 different dishes.</p>
-                    <p className="home-message my-3">Two of them must be <span className="home-vegan">vegan</span>.</p>
+                <div className='card col-12 my-md-1 py-3 px-4 d-flex flex-column align-items-center'>
+                    <h3 className="home-title my-3 p-md-3">Welcome to the SpoonacularAPI!</h3>
+                    <p className="home-message my-3 p-md-3">This is a small project where you can create your own customized menu by adding some of your all-time favourite dishes.</p>
+                    <p className="home-message my-3 p-md-3">You can add up to 4 different dishes.</p>
+                    <p className="home-message my-3 p-md-3">Two of them must be <span className="home-vegan">vegan</span>.</p>
                     <Link to={'/dishfinder'}>
                         <button className="btn btn-primary home-button mt-2" type="button">Get started!</button>
                     </Link>

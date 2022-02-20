@@ -13,7 +13,7 @@ import Error from './components/Error';
 
 function App() {
   return (
-    <LoginProvider >
+    <LoginProvider>
       <MenuProvider>
         <BrowserRouter>
           <Navbar />

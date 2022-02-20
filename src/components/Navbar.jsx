@@ -1,43 +1,63 @@
 import { useLogin } from "../contexts/LoginContext";
-import {
-    Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
     const { auth, logOut } = useLogin();
+    const [hamburger, setHamburger] = useState('navbar-hamburger');
+    const [navUl, setNavUl] = useState('navbar-ul');
     
+    const handleHamburger = () => {
+        hamburger === 'navbar-hamburger navbar-active' ? setHamburger('navbar-hamburger') : setHamburger('navbar-hamburger navbar-active');
+        navUl === 'navbar-ul navbar-active' ? setNavUl('navbar-ul') : setNavUl('navbar-ul navbar-active');
+    }
+
+    const hideOnClick = () => {
+        setHamburger('navbar-hamburger');
+        setNavUl('navbar-ul');
+    }
+
+
     const handleLogOut = () => {
         logOut();
     };
 
     return (
-        <nav className="nav bg-dark d-flex flex-row justify-content-around align-items-center navbar">
-            <div className="navbar-brand d-flex flex-row">
-                <Link to={'/'}>
-                    SpoonacularAPI
-                </Link>
-            </div>
-            <ul className="d-flex flex-column list-unstyled flex-lg-row align-items-center">
-                <li className="navbar-sections">
-                    <Link to={'/menu'}>
+        <nav className="d-flex flex-row justify-content-between justify-content-md-around align-items-center navbar-container bg-dark">
+            <Link className="navbar-logo navbar-links d-flex flex-row justify-content-md-center" onClick={hideOnClick} to={'/'}>
+                SpoonacularAPI
+            </Link>
+            <ul className={navUl}>
+                <Link className="navbar-text navbar-links p-0" to={'/menu'}>
+                    <li className="navbar-li" onClick={hideOnClick}>
                         Menu
-                    </Link>
-                </li>
-                <li className="navbar-sections">
-                    <Link to={'/dishfinder'}>
+                    </li>
+                </Link>
+                <Link className="navbar-text navbar-links p-0" to={'/dishfinder'}>
+                    <li className="navbar-li" onClick={hideOnClick}>
                         Dishfinder
-                    </Link>
-                </li>
-                <li className="navbar-sections">
-                    <Link to={'/about'}>
+                    </li>
+                </Link>
+                <Link className="navbar-text navbar-links p-0" to={'/about'}>
+                    <li className="navbar-li" onClick={hideOnClick}>
                         About
-                    </Link>
-                </li>
+                    </li>
+                </Link>
+                <div className="d-flex navbar-button-container">
+                    <li className="navbar-li" onClick={hideOnClick}>
+                        {auth === true ?
+                            <button type="button" className="btn btn-danger navbar-button" onClick={handleLogOut}>Sign out</button>
+                            : <Link to={'/login'}>
+                                <button type="button" className="btn btn-success navbar-button" onClick={hideOnClick}>Sign in</button>
+                            </Link>}
+                    </li>
+                </div>
             </ul>
-            {auth === true ? <>
-                <div className='d-flex flex-row'>
-                    <button type="button" className="btn btn-outline-danger my-3" onClick={handleLogOut}>Sign out</button>
-                </div> </> : null}
+            <div className={hamburger} onClick={handleHamburger}>
+                <span className='navbar-bar' onClick={handleHamburger}></span>
+                <span className='navbar-bar' onClick={handleHamburger}></span>
+                <span className='navbar-bar' onClick={handleHamburger}></span>
+            </div>
         </nav>
     )
 }

@@ -43,7 +43,7 @@ const Login = () => {
                         onSubmit={handleSubmit}
                     >
                         {({ errors, touched }) => (
-                            <Form className='container col-md-10 col-lg-4 d-flex flex-column'>
+                            <Form className='container col-md-8 col-lg-4 d-flex flex-column'>
                                 <div className='my-3'>
                                     <Field name="email" placeholder="Email" validate={validateEmail} className="form-control" />
                                     {errors.email && touched.email && <div className='form-validation'>{errors.email} </div>}
@@ -53,15 +53,12 @@ const Login = () => {
                                     {errors.password && touched.password && <div className='form-validation'>{errors.password}</div>}
                                 </div>
                                 {logging === true
-                                    ? 
-                                    <button className="btn btn-success login-btn my-3" type="button" disabled>
+                                    ? <button className="btn btn-success login-btn my-3" type="button" disabled>
                                         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         Loading...
                                     </button>
-                                    :
-                                    <button type="submit" className='btn btn-success my-3 login-btn'>Sign in</button>
+                                    : <button type="submit" className='btn btn-success my-3 login-btn'>Sign in</button>
                                 }
-                                
                             </Form> 
                         )}
                     </Formik>

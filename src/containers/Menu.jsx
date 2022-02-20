@@ -17,6 +17,7 @@ const Menu = () => {
     useEffect(() => {
         if (auth === false) {
             navigate('/login');
+            console.log('reloaded')
         }
     }, [auth, navigate]);
     
@@ -25,11 +26,13 @@ const Menu = () => {
             <div className="container col-12 d-flex flex-column align-items-center">
                 {menu && menu.length > 0 ? <>
                     <h1 className="m-3 title">Menu</h1>
-                    <div className='container d-flex flex-row flex-wrap justify-content-evenly p-3 result-container'>
-                        <div className='card col-12 col-md-4 col-lg-2 my-md-1 p-2 d-flex flex-column align-items-center'>
-                            <h5>{`Total price: $${getTotal('pricePerServing')}`}</h5>
-                            <h5>{`Average prep time: ${getAvg('readyInMinutes')} mins`}</h5>
-                            <h5>{`Average HealthScore: ${getAvg('healthScore')}`}</h5>
+                    <div className='container d-flex flex-row flex-wrap justify-content-between justify-content-lg-between p-3 result-container'>
+                        <div className="col-lg-12 d-lg-flex justify-content-lg-center">
+                            <div className='card col-12 col-lg-5 my-md-3 p-2 d-flex flex-column align-items-center'>
+                                <h5 className="dish-stats">{`Total price: $${getTotal('pricePerServing')}`}</h5>
+                                <h5 className="dish-stats">{`Average prep time: ${getAvg('readyInMinutes')} mins`}</h5>
+                                <h5 className="dish-stats">{`Average HealthScore: ${getAvg('healthScore')}`}</h5>
+                            </div>
                         </div>
                         {menu.map(n =>
                             <Dish key={n.id}
