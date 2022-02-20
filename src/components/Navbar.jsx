@@ -43,12 +43,12 @@ const Navbar = () => {
                         About
                     </li>
                 </Link>
-                <div className="d-flex navbar-button-container">
+                <div className="d-flex navbar-button-container justify-content-center">
                     <li className="navbar-li" onClick={hideOnClick}>
                         {auth === true ?
                             <button type="button" className="btn btn-danger navbar-button" onClick={handleLogOut}>Sign out</button>
                             : <Link to={'/login'}>
-                                <button type="button" className="btn btn-success navbar-button" onClick={hideOnClick}>Sign in</button>
+                                <button type="button" className="btn btn-primary navbar-button" onClick={hideOnClick}>Sign in</button>
                             </Link>}
                     </li>
                 </div>
